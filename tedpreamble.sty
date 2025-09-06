@@ -1,0 +1,534 @@
+% tedpreamble.sty
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tedpreamble}[2025/09/03 v0.2 Reusable preamble by Ted]
+
+% 可选参数系统
+% 说明: 使用 kvoptions 将包选项做成 key=value 的形式, 便于集中配置与文档化.
+\RequirePackage{kvoptions}
+\RequirePackage{ifthen}
+\SetupKeyvalOptions{family=tp,prefix=tp@}
+
+% 版式,页面,行距
+% 说明: 与 geometry 相关的可调参数.
+\DeclareStringOption[a4paper]{paper}
+\DeclareStringOption[2cm]{top}
+\DeclareStringOption[2cm]{bottom}
+\DeclareStringOption[1cm]{left}
+\DeclareStringOption[1cm]{right}
+\DeclareStringOption[15pt]{headheight}
+\DeclareStringOption[1.5]{linespread}
+
+% 说明: languages 直接传给 babel 的选项, 例如 danish,english.
+\DeclareStringOption[{danish,english}]{languages}
+
+% 草稿开关与图像嵌入
+% 说明: draft=true 时不嵌入图片以加速编译.
+\DeclareBoolOption[false]{draft}
+
+% 字体开关与名称
+% 说明: 这里给出默认字体族, 若系统无对应字体, 可在包选项中替换.
+\DeclareBoolOption[false]{defaultfonts}
+\DeclareStringOption[1.05]{notomathscale}
+
+\DeclareStringOption[Noto Serif Light]{mainfont}
+\DeclareStringOption[Noto Serif]{mainfontbold}
+\DeclareStringOption[Noto Serif Light Italic]{mainfontitalic}
+
+\DeclareStringOption[Noto Sans Light]{sansfont}
+\DeclareStringOption[Noto Sans]{sansfontbold}
+\DeclareStringOption[Noto Sans Light Italic]{sansfontitalic}
+
+\DeclareStringOption[MapleMono-NF-CN-Light]{monofont}
+
+\DeclareStringOption[LXGWNeoZhiSongPlus.ttf]{cjkmain}
+\DeclareStringOption[LXGWNeoXiHeiPlus.ttf]{cjksans}
+\DeclareStringOption[MapleMono-NF-CN-Regular]{cjkmono}
+
+% 超链接样式
+% 说明: hidelinks=true 时使用隐藏样式; 否则使用彩色链接.
+\DeclareBoolOption[false]{hidelinks}
+\DeclareStringOption[朱红]{linkcolor}
+\DeclareStringOption[深岩灰]{urlcolor}
+
+% 文档版本号, 默认 0.0.0.
+\DeclareStringOption[0.0.0]{docversion}
+
+% 处理所有选项
+\ProcessKeyvalOptions*
+
+% 用户接口: \version{<semver>} 设置版本号; 优先级高于包选项.
+% 说明: 使用 \providecommand 便于避免与用户自定义冲突; 不覆盖已存在定义。
+\providecommand{\version}[1]{%
+	\gdef\tp@docversion{#1}%
+}
+
+% 用户接口: 邮箱, 默认留空
+\newcommand{\tp@Email}{} % 保存邮箱字符串
+\providecommand{\email}[1]{\gdef\tp@Email{#1}} % 主文档调用 \email{...} 进行设置
+
+% 语言与字体
+% 说明: XeLaTeX + xeCJK 负责中英文字体; babel 控制语言断词与本地化.
+\RequirePackage{xeCJK}
+\PassOptionsToPackage{\tp@languages}{babel}
+\RequirePackage{babel}
+
+% 数学环境
+% 说明: amsmath+amsthm 是基础; mathtools 补充; physics 提供 \dv 等; thmtools 支持定理样式.
+\RequirePackage{amsmath,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{physics}
+\RequirePackage{thmtools}
+
+% 正文字体与数学字体
+\ifthenelse{\boolean{tp@defaultfonts}}{}{
+	% 自定义字体分支
+	\RequirePackage[scale=\tp@notomathscale,subscriptcorrection]{notomath}
+	\defaultfontfeatures{Scale=1}
+	\setmainfont[Scale=1,BoldFont=\tp@mainfontbold,ItalicFont=\tp@mainfontitalic]{\tp@mainfont}
+	\setsansfont[Scale=1,BoldFont=\tp@sansfontbold,ItalicFont=\tp@sansfontitalic]{\tp@sansfont}
+	\setmonofont[Scale=1]{\tp@monofont}
+	% CJK 字体由你的包选项决定; 若用户未改默认, 使用你之前在选项里给出的默认值
+	\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=0.25,Scale=1]{\tp@cjkmain}
+	\setCJKsansfont[Scale=1]{\tp@cjksans}
+	\setCJKmonofont[Scale=1]{\tp@cjkmono}
+}
+
+% 列表与浮动体
+\RequirePackage{enumitem}
+\RequirePackage{float}
+\RequirePackage{newfloat}
+
+% 颜色
+% 说明: 保留原有命名与配色.
+\RequirePackage[table,xcdraw]{xcolor}
+\newcommand\showcolour[1]{\fcolorbox{black}{#1}{\makebox[2em]{\phantom{M}}}~\makebox[5.5em][l]{\color{#1}#1}}
+
+% 通用
+\definecolor{invpurple}{HTML}{40ffbf}
+% 水
+\providecolor{水蓝}{HTML}{d2f0f4}
+% 蓝
+\providecolor{靛蓝}{HTML}{065279}
+\providecolor{宝蓝}{HTML}{4b5cc4}
+\providecolor{藏蓝}{HTML}{3b2e7e}
+\providecolor{靛青}{HTML}{177cb0}
+\providecolor{绀青}{HTML}{003371}
+% 红
+\providecolor{桃红}{HTML}{f47983}
+\providecolor{品红}{HTML}{f00056}
+\providecolor{丹}{HTML}{ff4e20}
+\providecolor{殷红}{HTML}{be002f}
+\providecolor{红梅}{HTML}{DB5A6B}
+\providecolor{中红}{HTML}{C93756}
+\providecolor{朱红}{HTML}{FF4A42}
+\providecolor{宫墙红}{HTML}{B23130}
+% 绿
+\providecolor{绿沈}{HTML}{0c8918}
+\providecolor{青碧}{HTML}{48c0a3}
+\providecolor{缥}{HTML}{7fecad}
+\providecolor{艾绿}{HTML}{a4e2c6}
+\providecolor{嫩绿}{HTML}{bddd22}
+\providecolor{青白}{HTML}{c0ebd7}
+\providecolor{松绿}{HTML}{057748}
+\providecolor{铜绿}{HTML}{549688}
+% 黄/橙
+\providecolor{姜黄}{HTML}{ffc773}
+\providecolor{橙色}{HTML}{fa8c35}
+% 灰
+\providecolor{苍白}{HTML}{d1d9e0}
+\providecolor{苍青}{HTML}{7397ab}
+\providecolor{深岩灰}{HTML}{2F4F4F}
+% 黑
+\providecolor{漆黑}{HTML}{161823}
+\providecolor{墨色}{HTML}{50616d}
+% 白
+\providecolor{莹白}{HTML}{e3f9fd}
+\providecolor{雪白}{HTML}{f2fdff}
+\providecolor{月白}{HTML}{d6ecf0}
+\providecolor{花白}{HTML}{c2ccd0}
+\providecolor{灰白}{HTML}{f0f0f4}
+% 跨旗配色
+\providecolor{mtfpink}{HTML}{F5A9B8}
+\providecolor{mtfblue}{HTML}{5BCEFA}
+\providecolor{mtfwhite}{HTML}{FFFFFF}
+
+% 图形
+% 说明: 草稿模式不嵌入图片以加快编译.
+\ifthenelse{\boolean{tp@draft}}{%
+	\RequirePackage[draft]{graphicx}%
+}{%
+	\RequirePackage{graphicx}%
+}
+
+% 日期与中文数字
+\RequirePackage[datesep={$/$},style=ddmmyyyy]{datetime2}
+\RequirePackage{zhnumber}
+
+% 彩色盒子与定理盒
+\RequirePackage[most]{tcolorbox}
+\tcbuselibrary{theorems}
+
+% 化学式
+\RequirePackage[version=4]{mhchem}
+
+% 图与交换图
+\RequirePackage{tikz}
+\usetikzlibrary{babel,arrows.meta,calc,cd}
+
+% 其他常用宏包
+\RequirePackage{multicol}
+\RequirePackage{multirow}
+\RequirePackage{import}
+\RequirePackage{gensymb}
+\RequirePackage{dirtytalk}
+\RequirePackage{titlesec}
+\RequirePackage{titling}
+
+% 下划线
+\RequirePackage[normalem]{ulem}
+
+% 超链接
+% 说明: hidelinks=true 使用黑白无框; 否则彩色链接并启用目录链接着色.
+\ifthenelse{\boolean{tp@hidelinks}}{%
+	\RequirePackage[hidelinks]{hyperref}%
+}{%
+	\ifthenelse{\boolean{tp@draft}}{%
+		\RequirePackage[hidelinks,colorlinks=true,linkcolor=\tp@linkcolor,urlcolor=\tp@urlcolor]{hyperref}%
+	}{%
+		\RequirePackage[hidelinks,colorlinks=true,linkcolor=\tp@linkcolor,urlcolor=\tp@urlcolor,linktoc=all]{hyperref}%
+	}%
+}
+
+% 段落缩进与段前距
+% 说明: 讲义常用的无缩进+段间距.
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% 定理样式
+% 说明: \NAME \NUMBER \NOTE 为 thmtools 的占位符.
+% 蓝: 定理族(斜体正文)
+\declaretheoremstyle[
+within=section,
+spaceabove=3pt, spacebelow=3pt,
+headfont=\bfseries\color{绀青},
+notefont=\bfseries, notebraces={(}{)},
+bodyfont=\itshape,
+headformat=\uline{\NAME\ \NUMBER\ \NOTE},
+headpunct={:}, postheadspace=0.5em
+]{bluethm}
+
+% 红: 定义(直立正文)
+\declaretheoremstyle[
+within=section,
+spaceabove=3pt, spacebelow=3pt,
+headfont=\bfseries\color{宫墙红},
+notefont=\bfseries, notebraces={(}{)},
+bodyfont=\mdseries,
+headformat=\uline{\NAME\ \NUMBER\ \NOTE},
+headpunct={:}, postheadspace=0.5em
+]{yinredthm}
+
+% 绿: 备注(斜体正文)
+\declaretheoremstyle[
+within=section,
+spaceabove=3pt, spacebelow=3pt,
+headfont=\bfseries\color{松绿},
+notefont=\bfseries, notebraces={(}{)},
+bodyfont=\itshape,
+headformat=\uline{\NAME\ \NUMBER\ \NOTE},
+headpunct={:}, postheadspace=0.5em
+]{greenthm}
+
+% 绿(直立): 示例
+\declaretheoremstyle[
+within=section,
+spaceabove=3pt, spacebelow=3pt,
+headfont=\bfseries\color{松绿},
+notefont=\bfseries, notebraces={(}{)},
+bodyfont=\mdseries,
+headformat=\uline{\NAME\ \NUMBER\ \NOTE},
+headpunct={:}, postheadspace=0.5em
+]{examplethm}
+
+% 青灰(直立): 记号
+\declaretheoremstyle[
+within=section,
+spaceabove=3pt, spacebelow=3pt,
+headfont=\bfseries\color{藏蓝},
+notefont=\bfseries, notebraces={(}{)},
+bodyfont=\mdseries,
+headformat=\uline{\NAME\ \NUMBER\ \NOTE},
+headpunct={:}, postheadspace=0.5em
+]{notationthm}
+
+% English
+\theoremstyle{bluethm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{observation}[theorem]{Observation}
+
+\theoremstyle{yinredthm}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{examplethm}
+\newtheorem{example}{Example}
+
+\theoremstyle{notationthm}
+\newtheorem{notation}{Notation}
+\newtheorem*{notation*}{Notation}
+\newtheorem{corrections}{Corrections}
+
+\theoremstyle{greenthm}
+\newtheorem*{remark}{Remark}
+
+% 中文
+\theoremstyle{bluethm}
+\newtheorem{ch_theorem}[theorem]{定理}
+\newtheorem{ch_lemma}[theorem]{引理}
+\newtheorem{ch_corollary}[theorem]{推论}
+\newtheorem{ch_observation}[theorem]{观察}
+
+\theoremstyle{yinredthm}
+\newtheorem{ch_definition}[theorem]{定义}
+
+\theoremstyle{examplethm}
+\newtheorem{ch_example}{例子}
+
+\theoremstyle{notationthm}
+\newtheorem{ch_notation}{记号}
+\newtheorem*{ch_notation*}{记号}
+\newtheorem{ch_corrections}{更正}
+
+\theoremstyle{greenthm}
+\newtheorem*{ch_remark}{注意}
+
+% Dansk
+\theoremstyle{bluethm}
+\newtheorem{da_theorem}[theorem]{Sætning}
+\newtheorem{da_lemma}[theorem]{Lemma}
+\newtheorem{da_corollary}[theorem]{Korollar}
+\newtheorem{da_observation}[theorem]{Observation}
+
+\theoremstyle{yinredthm}
+\newtheorem{da_definition}[theorem]{Definition}
+
+\theoremstyle{examplethm}
+\newtheorem{da_example}{Eksempel}
+
+\theoremstyle{notationthm}
+\newtheorem{da_notation}{Notation}
+\newtheorem*{da_notation*}{Notation}
+\newtheorem{da_corrections}{Rettelser}
+
+\theoremstyle{greenthm}
+\newtheorem*{da_remark}{Bemækning}
+
+% 证明与目录标题本地化
+\AtBeginDocument{\renewcommand\proofname{{\color{宝蓝}Proof.}}}
+\newenvironment{ch_proof}{\begin{proof}[\itshape\textcolor{宝蓝}{证明.}]}{\end{proof}}
+\setlocalecaption{english}{contents}{{\color{靛青}Contents/Indhold/目录}}
+
+% Tcolorbox 环境
+\newtcolorbox{problem}[1][]{
+	coltitle=black,
+	colframe=品红!90!white,
+	title={#1},
+	enhanced,
+	breakable,
+	skin first=enhanced,
+	skin middle=enhanced,
+	skin last=enhanced,
+}
+\newtcolorbox{sporgsmal}[1][]{
+	coltitle=white,
+	colframe=绀青!65!绿沈,
+	title={#1},
+	enhanced,
+	breakable,
+	skin first=enhanced,
+	skin middle=enhanced,
+	skin last=enhanced,
+}
+
+
+% 无编号标题辅助命令
+\newcommand*{\sectionnonumber}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand*{\subsectionnonumber}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+\newcommand*{\subsubsectionnonumber}[1]{\subsubsection*{#1}\addcontentsline{toc}{subsubsection}{#1}}
+
+% 自定义浮动体
+\DeclareFloatingEnvironment[fileext=lop,placement={hbtp},name=Graf]{Graf}
+
+% 数学
+% 数集
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\E}{\mathbb{E}}
+%函数
+\newcommand{\func}[3]{#1 \colon #2 \to #3}
+%连接词
+\newcommand{\qog}{\qq{og}}
+\newcommand{\og}{\,\text{og}\,}
+\newcommand{\qeller}{\qq{eller}}
+\newcommand{\qforalle}{\qq{for alle}}
+\newcommand{\tqc}{\text{,}\,}
+\newcommand{\bimplies}{\Leftrightarrow}
+
+% 跨旗
+\newcommand{\mtfrule}[2]{{\color{mtfblue}{\rule{{#1}/5}{#2}}}{\color{mtfpink}{\rule{{#1}/5}{#2}}}{\color{mtfwhite}{\rule{{#1}/5}{#2}}}{\color{mtfpink}{\rule{{#1}/5}{#2}}}{\color{mtfblue}{\rule{{#1}/5}{#2}}}}
+\newcommand{\mtfflag}{{\parbox{2em}{\rotatebox{90}{\mtfrule{12pt}{20pt}}}\vspace{-1.25em}}}
+
+% 代码高亮
+\RequirePackage{listings}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{青碧},
+	keywordstyle=\color{丹},
+	numberstyle=\tiny\color{苍青},
+	stringstyle=\color{绀青},
+	basicstyle=\ttfamily\footnotesize,
+	breaklines=true,captionpos=b,keepspaces=true,
+	numbers=left,numbersep=5pt,showspaces=false,showstringspaces=false,showtabs=false,tabsize=2
+}
+\lstset{style=mystyle}
+
+% 版本与时间
+% 说明: \myversion 为向后兼容的别名, 取自 docversion.
+\newcommand{\myversion}{\tp@docversion}
+\newcommand{\mydocumentversion}{Version \tp@docversion}
+\newcommand{\mydocumentversionCH}{第 \tp@docversion 版}
+\newcommand{\buildtime}{Build at \DTMNow}
+\newcommand{\buildtimeCH}{编译时间: \zhtoday \zhcurrtime}
+
+% 页眉页脚
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\fancyhf{}
+\lhead{\theauthor}
+\rhead{{\thepage \hspace{0.2ex} of \hspace{0ex} {\hypersetup{linkcolor=black}\pageref{LastPage}}}}
+\lfoot{{\color{苍白}\buildtime}}
+
+% tcbnonumber
+\newcommand{\tcbnonumber}{\begingroup
+	\hypersetup{allcolors=靛青}
+	\begin{tcolorbox}[colframe=靛青!87!black,colback=靛青!4!white]
+		\tableofcontents
+		\vspace{1.25em}
+	\end{tcolorbox}
+	\endgroup}
+
+% 版式与行距应用
+% 说明: 将 geometry 与行距配置在包加载后即生效.
+\RequirePackage{geometry}
+\geometry{
+	headheight=\tp@headheight,
+	top=\tp@top,
+	bottom=\tp@bottom,
+	left=\tp@left,
+	right=\tp@right,
+	paper=\tp@paper
+}
+\linespread{\tp@linespread}\selectfont
+
+% 依赖: xkeyval 用于命令级键值解析
+\RequirePackage{xkeyval} % 键值解析, 供 \makeopening 使用
+
+
+
+% 工具: 判断参数是否为空, 空则执行 #2, 非空执行 #3
+\makeatletter
+\newcommand{\tp@ifempty}[3]{%
+	\begingroup
+	\edef\TP@tmp{#1}%
+	\if\relax\detokenize{\TP@tmp}\relax
+	\endgroup #2%
+	\else
+	\endgroup #3%
+	\fi
+}
+\makeatother
+
+% ---- \makeopening 的键定义 ----
+\makeatletter
+\newif\iftpopen@showemail
+\def\tpopen@verlang{both}
+\def\tpopen@timelang{both}
+
+% email=true|false 控制是否显示邮箱行
+\define@key{tpopen}{email}{%
+	\lowercase{\def\TP@tmp{#1}}%
+	\def\TP@true{true}\def\TP@false{false}%
+	\ifx\TP@tmp\TP@false \tpopen@showemailfalse\else \tpopen@showemailtrue\fi
+}
+
+% ver=en|zh|both|none 控制版本号语言显示
+\define@key{tpopen}{ver}{\def\tpopen@verlang{#1}}
+
+% time=en|zh|both|none 控制构建时间语言显示
+\define@key{tpopen}{time}{\def\tpopen@timelang{#1}}
+
+% ---- \makeopening 指令 ----
+% 说明: 进入 center 环境, 行为由 [email=..., ver=..., time=...] 控制.
+\newcommand{\makeopening}[1][]{%
+	% 默认值
+	\tpopen@showemailtrue
+	\def\tpopen@verlang{both}%
+	\def\tpopen@timelang{both}%
+	% 解析用户键
+	\setkeys{tpopen}{#1}%
+	% 正文块
+	\begin{center}
+		{\Large {\thetitle}}\\
+		\theauthor\\
+		% 邮箱: 仅当设为显示且邮箱不为空
+		\iftpopen@showemail
+		\tp@ifempty{\tp@Email}{}{%
+			\href{mailto:\tp@Email}{\tp@Email}\\%
+		}%
+		\fi
+		% 版本号
+		\def\TP@en{en}\def\TP@zh{zh}\def\TP@both{both}\def\TP@none{none}%
+		\edef\TP@v{\tpopen@verlang}%
+		\ifx\TP@v\TP@en
+		\mydocumentversion\\
+		\else\ifx\TP@v\TP@zh
+		\mydocumentversionCH\\
+		\else\ifx\TP@v\TP@both
+		\mydocumentversion\\
+		\mydocumentversionCH\\
+		\else
+		% none, 不输出
+		\fi\fi\fi
+		% 构建时间
+		\edef\TP@t{\tpopen@timelang}%
+		\ifx\TP@t\TP@en
+		\buildtime\\
+		\else\ifx\TP@t\TP@zh
+		\buildtimeCH\\
+		\else\ifx\TP@t\TP@both
+		\buildtime\\
+		\buildtimeCH\\
+		\else
+		% none, 不输出
+		\fi\fi\fi
+	\end{center}
+}
+
+% 在文档开始时生效.
+\AtBeginDocument{
+	\setlist{topsep=0.5ex,noitemsep}
+	\pagenumbering{arabic}
+	\pagestyle{fancy}
+	\setcounter{page}{1}
+}
+\makeatother
+
+% 结束
+\endinput
