@@ -52,11 +52,11 @@ options%keyvals#c
 \subsubsectionnonumber{title%title}
 
 # Theorem shorthands (wrapper commands)
-\def[title%title]{definition%text}
-\thm[title%title]{text%text}
-\lem[title%title]{text%text}
-\coro[title%title]{text%text}
-\prop[title%title]{text%text}
+\def{definition%text}
+\thm{text%text}
+\lem{text%text}
+\coro{text%text}
+\prop{text%text}
 
 # ---------------------------------------
 # Environments provided/defined by the package
