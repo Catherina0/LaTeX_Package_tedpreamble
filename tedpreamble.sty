@@ -330,6 +330,12 @@ headpunct={:}, postheadspace=0.5em
 \newenvironment{ch_proof}{\begin{proof}[\itshape\textcolor{宝蓝}{证明.}]}{\end{proof}}
 \setlocalecaption{english}{contents}{{\color{靛青}Contents/Indhold/目录}}
 
+% 定理指令化
+\newcommand{\def}[2][][]{\begin{definition}[#1] #2\end{definition}}
+\newcommand{\thm}[2][][]{\begin{theorem}[#1] #2\end{theorem}}
+\newcommand{\lem}[2][][]{\begin{lemma}[#1] #2\end{lemma}}
+\newcommand{\coro}[2][][]{\begin{corollary}[#1] #2\end{corollary}}
+
 % Tcolorbox 环境
 \newtcolorbox{problem}[1][]{
 	coltitle=black,
