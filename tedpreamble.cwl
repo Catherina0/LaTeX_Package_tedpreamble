@@ -56,6 +56,7 @@ options%keyvals#c
 \thm[title%title]{text%text}
 \lem[title%title]{text%text}
 \coro[title%title]{text%text}
+\prop[title%title]{text%text}
 
 # ---------------------------------------
 # Environments provided/defined by the package
