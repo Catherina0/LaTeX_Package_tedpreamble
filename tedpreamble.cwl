@@ -1,39 +1,46 @@
-# tedpreamble.cwl _ completion + light semantics for the "tedpreamble" package
-# Format reference (commands, placeholders %< %>, %| cursor, classifications, keyvals, placement). 
-# See TeXstudio manual "Description of the cwl format", "Command format", "Classification format", 
-# and "cwl file placement". 
-# (This file is UTF-8.) 
+#include:amsmath
+#include:mathtools
+#include:physics
+#include:thmtools
+#include:tikz
+#include:tcolorbox
+#include:hyperref
+#include:babel
+#include:xeCJK
+#include:geometry
+#include:xcolor
+#include:listings
+#include:enumitem
+#include:graphicx
+#include:newfloat
+#include:float
 
-# ---------------------------------------
-# Package use
-# ---------------------------------------
+# Then your package’s own include
+#include:tedpreamble
+
+# Then your \usepackage line
 \usepackage[options]{tedpreamble}#u
 
-# Keyvals for \usepackage[...]{tedpreamble}
-# TeXstudio: use "#keyvals:<command>" and mark lengths with ##L; 
-# use #%color list for color-valued keys; add '#c' to make keyvals completion-only. 
-# Ref: manual sections on #keyvals and special lists. 
-# ---------------------------------------
 #keyvals:\usepackage/tedpreamble
 options%keyvals#c
- paper, top##L, bottom##L, left##L, right##L, headheight##L, linespread,
- languages%text,
- draft=#true,false,
- defaultfonts=#true,false,
- notomathscale,
- mainfont%text, mainfontbold%text, mainfontitalic%text,
- sansfont%text, sansfontbold%text, sansfontitalic%text,
- monofont%text,
- cjkmain%file, cjksans%file, cjkmono%text,
- hidelinks=#true,false,
- linkcolor#%color, urlcolor#%color,
- docversion%text
+paper, top##L, bottom##L, left##L, right##L, headheight##L, linespread,
+languages%text,
+draft=#true,false,
+defaultfonts=#true,false,
+notomathscale,
+mainfont%text, mainfontbold%text, mainfontitalic%text,
+sansfont%text, sansfontbold%text, sansfontitalic%text,
+monofont%text,
+cjkmain%file, cjksans%file, cjkmono%text,
+hidelinks=#true,false,
+linkcolor#%color, urlcolor#%color,
+docversion%text
 #endkeyvals
 
 # ---------------------------------------
 # Public user commands
 # ---------------------------------------
-\version{semver%text}
+\version{version%text}
 \email{email%text}
 \makeopening[options]   # has only an optional keyval argument
 \tcbnonumber
@@ -41,9 +48,9 @@ options%keyvals#c
 # Keyvals for \makeopening[...]
 # ---------------------------------------
 #keyvals:\makeopening
- email=#true,false,
- ver=#en,zh,both,none,
- time=#en,zh,both,none
+email=#true,false,
+ver=#en,zh,both,none,
+time=#en,zh,both,none
 #endkeyvals
 
 # Unnumbered section helpers
@@ -52,7 +59,7 @@ options%keyvals#c
 \subsubsectionnonumber{title%title}
 
 # Theorem shorthands (wrapper commands)
-\def{definition%text}
+\def{text%text}
 \thm{text%text}
 \lem{text%text}
 \coro{text%text}
@@ -65,8 +72,15 @@ options%keyvals#c
 # ---------------------------------------
 
 # Float environment "Graf" (from newfloat)
-\begin{Graf}[placement] 
+\begin{Graf}[placement]
 \end{Graf}
+
+# Proof environment
+\begin{proof}
+\end{proof}
+
+\begin{ch_proof}
+\end{ch_proof}
 
 # tcolorbox-based environments
 \begin{problem}[title%title]
@@ -163,6 +177,6 @@ options%keyvals#c
 \mtfflag
 
 # ---------------------------------------
-# Nice-to-have: hyperlinks may appear when email is present, 
+# Nice-to-have: hyperlinks may appear when email is present,
 # but \email's argument is plain text here.
 # ---------------------------------------

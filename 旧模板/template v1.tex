@@ -1,0 +1,337 @@
+\documentclass[12pt,a4paper]{article}
+\linespread{1.35}
+\usepackage[headheight=15pt,bottom=2cm,top=2cm,left=1.3cm,right=1.3cm]{geometry}
+\usepackage{xeCJK}
+\usepackage[danish,english]{babel}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath,amssymb,amsfonts,mathrsfs,latexsym,amsthm}
+\usepackage{thmtools}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{subcaption}
+\usepackage{titlepic}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+\usepackage{gensymb} %giver temperatursymboler
+\usepackage{titling} %calling the title and author
+\usepackage[datesep={$/$},style=ddmmyyyy]{datetime2}
+\usepackage{zhnumber}
+\usepackage{nicematrix}
+\usepackage{dirtytalk}
+
+%font
+\usepackage[scale=1.05,subscriptcorrection]{notomath}
+\setmainfont[Scale=1,BoldFont={Noto Serif},ItalicFont={Noto Serif Light Italic}]{Noto Serif Light}
+\setsansfont[Scale=1,BoldFont={Noto Sans},ItalicFont={Noto Sans Light Italic}]{Noto Sans Light}
+\setmonofont[Scale=1]{MapleMono-NF-CN-Light}
+
+\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=0.25,Scale=1]{LXGWNeoZhiSongPlus.ttf}
+\setCJKsansfont[Scale=1]{LXGWNeoXiHeiPlus.ttf}
+\setCJKmonofont[Scale=1]{MapleMono-NF-CN-Regular}
+
+%bibLatex
+\usepackage{biblatex}
+%Table
+\usepackage{pstricks}
+\usepackage{pgfpages}
+
+%Kemi
+\usepackage[version=4]{mhchem}
+
+%framed box
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems}
+
+%comutativ diagrams
+\usepackage{fontawesome}
+\usepackage{pgf}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage{tikzsymbols}
+\usepackage{tikz-cd}
+\usetikzlibrary{babel}
+\usepackage{quiver}
+\usepackage{multicol}
+\usepackage{multirow}
+
+%import
+\usepackage{import}
+
+%hyperref
+\usepackage[hidelinks,colorlinks=true,linkcolor=桃红,urlcolor=mtfblue!50!black,linktoc=all]{hyperref}
+
+%Indent
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+%color
+\definecolor{invpurple}{HTML}{40ffbf}
+% 水
+\providecolor{水蓝}{HTML}{d2f0f4}
+% 蓝
+\providecolor{靛蓝}{HTML}{065279}
+\providecolor{靛青}{HTML}{177cb0}
+\providecolor{绀青}{HTML}{003371}
+% 红
+\providecolor{桃红}{HTML}{f47983}
+\providecolor{品红}{HTML}{f00056}
+\providecolor{丹}{HTML}{ff4e20}
+% 绿
+\providecolor{绿沈}{HTML}{0c8918}
+\providecolor{青碧}{HTML}{48c0a3}
+\providecolor{缥}{HTML}{7fecad}
+\providecolor{艾绿}{HTML}{a4e2c6}
+\providecolor{嫩绿}{HTML}{bddd22}
+\providecolor{青白}{HTML}{c0ebd7}
+% 黄
+\providecolor{姜黄}{HTML}{ffc773}
+\providecolor{橙色}{HTML}{fa8c35}
+% 灰
+\providecolor{苍白}{HTML}{d1d9e0}
+\providecolor{苍青}{HTML}{7397ab}
+% 黑
+\providecolor{漆黑}{HTML}{161823}
+\providecolor{墨色}{HTML}{50616d}
+% 白
+\providecolor{莹白}{HTML}{e3f9fd}
+\providecolor{雪白}{HTML}{f2fdff}
+\providecolor{月白}{HTML}{d6ecf0}
+\providecolor{花白}{HTML}{c2ccd0}
+\providecolor{灰白}{HTML}{f0f0f4}
+
+
+%Theorem og Definition
+\declaretheoremstyle[within=section,spaceabove=3pt,spacebelow=3pt,headfont=\bfseries\color{绀青},notefont=\bfseries, notebraces={(}{)},bodyfont=\itshape, headpunct={:},postheadspace=0.5em]{bluethm}
+
+\declaretheoremstyle[within=section,spaceabove=3pt,spacebelow=3pt,headfont=\bfseries\color{桃红},notefont=\bfseries, notebraces={(}{)},bodyfont=\bfseries\color{桃红!65!black}, headpunct={:},postheadspace=0.5em]{peachredthm}
+
+\declaretheoremstyle[within=section,spaceabove=3pt,spacebelow=3pt,headfont=\bfseries\color{丹},notefont=\bfseries, notebraces={(}{)},bodyfont=\mdseries, headpunct={:},postheadspace=0.5em]{danredthm}
+
+\declaretheoremstyle[within=section,spaceabove=3pt,spacebelow=3pt,headfont=\bfseries\color{绿沈!50!青碧},notefont=\bfseries, notebraces={(}{)},bodyfont=\mdseries, headpunct={:},postheadspace=0.5em]{greenthm}
+
+\declaretheoremstyle[within=section,spaceabove=3pt,spacebelow=3pt,headfont=\bfseries\color{姜黄},notefont=\bfseries, notebraces={(}{)},bodyfont=\itshape, headpunct={:},postheadspace=0.5em]{yellowthm}
+
+\AtBeginDocument{\renewcommand\proofname{{\color{绀青!65!绿沈}Proof}}}
+\setlocalecaption{english}{contents}{{\color{靛青}Contents/Indhold/目录}}
+
+%English
+\theoremstyle{bluethm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{danredthm}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{greenthm}
+\newtheorem*{remark}{Remark}
+\newtheorem{formula}[theorem]{Formula}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{exsample}[theorem]{Exsample}
+\theoremstyle{peachredthm}
+\newtheorem*{corrections}{Corrections}
+%Chinese
+\theoremstyle{bluethm}
+\newtheorem{ch_theorem}[theorem]{定理}
+\newtheorem{ch_corollary}[theorem]{推论}
+\newtheorem{ch_lemma}[theorem]{引理}
+\theoremstyle{danredthm}
+\newtheorem{ch_definition}[theorem]{定义}
+\theoremstyle{greenthm}
+\newtheorem*{ch_remark}{注意}
+\newtheorem{ch_formula}[theorem]{公式}
+\newtheorem{ch_exsample}[theorem]{例子}
+\theoremstyle{peachredthm}
+\newtheorem*{ch_corrections}{更正}
+%dansk
+\newtheorem{theorem_da}[theorem]{Sætning}
+\newtheorem{corollary_da}[theorem]{Korollar}
+\newtheorem{lemma_da}[theorem]{Lemma}
+\newtheorem{definition_da}[theorem]{Definition}
+\newtheorem*{remark_da}{Bemækning}
+
+%Opgave
+\newtcolorbox{problem}[1][]{coltitle=black,colframe=品红!90!white,title={#1},enhanced,breakable,skin first=enhanced,skin middle=enhanced,skin last=enhanced,}
+\newtcolorbox{sporgsmal}[1][]{coltitle=white,colframe=绀青!65!绿沈,title={#1},enhanced,breakable,skin first=enhanced,skin middle=enhanced,skin last=enhanced,}
+
+%No number title
+\newcommand*{\sectionnonumber}[1]{
+	\section*{#1}
+	\addcontentsline{toc}{section}{#1}
+}
+
+\newcommand*{\subsectionnonumber}[1]{
+	\subsection*{#1}
+	\addcontentsline{toc}{subsection}{#1}
+}
+
+\newcommand*{\subsubsectionnonumber}[1]{
+	\subsubsection*{#1}
+	\addcontentsline{toc}{subsubsection}{#1}
+}
+%提示/注意/警告
+\newtcolorbox{vborderline}[1]{
+	skin=empty,
+	top=0pt,
+	bottom=0pt,
+	toprule=0pt,
+	bottomrule=0pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	borderline west={2.5pt}{0pt}{#1},
+}
+% 提示
+\newenvironment{提醒}
+{\begin{vborderline}{靛蓝}
+		\parbox{2.75em}{\textcolor{靛蓝}{\vspace{2pt}{提醒: }}}
+	}
+	{\end{vborderline}}
+
+\newenvironment{attention}
+{\begin{vborderline}{靛蓝}
+		\parbox{4.5em}{\textcolor{靛蓝}{\vspace{2pt}{Attention: }}}
+	}
+	{\end{vborderline}}
+
+\newenvironment{attention_ch}
+{\begin{vborderline}{靛蓝}
+		\parbox{2.75em}{\textcolor{靛蓝}{\vspace{2pt}{提醒: }}}
+	}
+	{\end{vborderline}}
+
+% 提醒
+\newenvironment{注意}
+{\begin{vborderline}{橙色}
+		\parbox{2.75em}{\textcolor{橙色}{\vspace{2pt}{注意：}}}
+	}
+	{\end{vborderline}}
+
+\newenvironment{caution}
+{\begin{vborderline}{橙色}
+		\parbox{4.5em}{\textcolor{橙色}{\vspace{2pt}{Caution：}}}
+	}
+	{\end{vborderline}}
+
+\newenvironment{caution_ch}
+{\begin{vborderline}{橙色}
+		\parbox{2.75em}{\textcolor{橙色}{\vspace{2pt}{注意：}}}
+	}
+	{\end{vborderline}}
+% 注意
+\newenvironment{警告}
+{\begin{vborderline}{丹}
+		\parbox{2.75em}{\textcolor{丹}{\vspace{2pt}{警告：}}}
+	}
+	{\end{vborderline}}
+
+\newenvironment{warning}
+{\begin{vborderline}{丹}
+		\parbox{4.5em}{\textcolor{丹}{\vspace{2pt}{Warning：}}}
+	}
+	{\end{vborderline}}
+
+\newenvironment{warning_ch}
+{\begin{vborderline}{丹}
+		\parbox{2.75em}{\textcolor{丹}{\vspace{2pt}{警告：}}}
+	}
+	{\end{vborderline}}
+
+%graf
+\newfloat{Graf}{hbtp}{lop}[section]
+
+%Number Sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\E}{\mathbb{E}}
+
+%function
+\newcommand{\func}[3]{#1 \colon #2 \to #3}
+
+%\qq{} danish
+\newcommand{\qog}{\qq{og}}
+\newcommand{\qeller}{\qq{eller}}
+\newcommand{\qforalle}{\qq{for alle}}
+
+%bimplies
+\newcommand{\bimplies}{\Leftrightarrow}
+
+%跨旗
+\providecolor{mtfpink}{HTML}{F5A9B8}
+\providecolor{mtfblue}{HTML}{5BCEFA}
+\providecolor{mtfwhite}{HTML}{FFFFFF}
+\newcommand{\mtfrule}[2]{{\color{mtfblue}{\rule{{#1}/5}{#2}}}{\color{mtfpink}{\rule{{#1}/5}{#2}}}{\color{mtfwhite}{\rule{{#1}/5}{#2}}}{\color{mtfpink}{\rule{{#1}/5}{#2}}}{\color{mtfblue}{\rule{{#1}/5}{#2}}}}
+\newcommand{\mtfflag}{{\parbox{2em}{\rotatebox{90}{\mtfrule{12pt}{20pt}}}\vspace{-1.25em}}}
+
+%code
+\usepackage{listings}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{青碧},
+	keywordstyle=\color{丹},
+	numberstyle=\tiny\color{苍青},
+	stringstyle=\color{绀青},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
+}
+\lstset{style=mystyle}
+
+%page number
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+%pagehead,pagefoot
+\fancyhf{}
+\lhead{\theauthor}
+\chead{}
+\rhead{{\thepage \hspace{0.2ex} of \hspace{0ex} {\hypersetup{linkcolor=black}\pageref{LastPage}}}}
+\lfoot{\color{苍白!75!black}{\buildtime}}
+\pagenumbering{gobble}
+
+%document version
+\newcommand{\mydocumentversion}{Version $\myversion$}
+\newcommand{\mydocumentversionCH}{第 $\myversion$ 版}
+
+%build time
+\newcommand{\buildtime}{Build at \DTMNow}
+\newcommand{\buildtimeCH}{编译时间: \zhtoday \zhcurrtime}
+
+
+%opening
+\title{标题}
+\author{Ted}
+\date{\today}
+\def\myversion{0.0.0}
+
+\begin{document}
+	%列表环境间距
+	\setlist{topsep=0.75ex,noitemsep}
+	\begin{center}
+		{\Large {\thetitle}}
+		\\\theauthor
+		%\\\mydocumentversion
+		%\\\mydocumentversionCH
+		\\\buildtime
+		\\\buildtimeCH
+	\end{center}
+	\pagenumbering{arabic}
+	\pagestyle{fancy}
+	\setcounter{page}{1}
+	%\begingroup \hypersetup{colorlinks=true,allcolors=靛青} \begin{tcolorbox}[colframe=靛青!87!black,colback=靛青!4!white] \tableofcontents \vspace{1.25em} \end{tcolorbox} \endgroup
+
+	\input{exsampletext.tex}
+\end{document}

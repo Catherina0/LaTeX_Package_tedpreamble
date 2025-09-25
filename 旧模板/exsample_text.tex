@@ -1,0 +1,105 @@
+\sectionnonumber{许多字体}
+
+Hello World! -> 你好世界!
+
+\texttt{Hello World! => 你好世界!}
+
+\textsf{Hello World! -> 你好世界!}
+
+\textbf{Hello World! -> 你好世界!}
+
+\textit{Hello World! -> 你好世界!}
+
+
+
+$E=mc^2$
+以及$\dv{x}{t}$, $\grad{b}$以及$9 \flatfrac{4}{3}$ 对于任意$x,y\in \R$, 我们有函数$\func{f}{\C}{\R^2}$
+
+\begin{sporgsmal}[生死]
+	一些人提出问题
+
+	\say{生存还是死亡,这是一个问题}
+\end{sporgsmal}
+\begin{problem}[问题]
+	作为人类,我们的一生都在提出问题
+\end{problem}
+
+现在是: \zhtoday \zhcurrtime
+
+\begin{definition}[定义一些东西...]
+	这是一个定义
+\end{definition}
+\begin{theorem}[平凡的定理]
+	这是一个定理
+	\begin{proof}
+		平凡的
+	\end{proof}
+\end{theorem}
+\begin{formula}[你好公式]
+	这是一个公式
+\end{formula}
+\begin{corollary}[你好引理]
+	这是一条引理
+\end{corollary}
+\begin{ch_definition}[中文定义]
+	中文也能工作
+\end{ch_definition}
+\begin{exsample}[整数]
+	1是一个整数
+\end{exsample}
+\begin{ch_corrections}
+	问题需要更正
+\end{ch_corrections}
+我超! 跨旗! \mtfflag 真的吗? 还有一个\href{https://mtf.wiki/zh-cn/}{链接(MtF Wiki)....}
+
+\section{交换图}
+\begin{equation*}
+	\begin{tikzcd}
+		{\F^2} & {\F^3}
+		\arrow[from=1-1, to=1-2,"f"]
+	\end{tikzcd}
+	\label{cd1}
+	\quad
+	\begin{tikzcd}
+		A & B \\
+		& C
+		\arrow["f", from=1-1, to=1-2]
+		\arrow["{f\circ g}"', from=1-1, to=2-2]
+		\arrow["g", from=1-2, to=2-2]
+	\end{tikzcd}
+	\quad
+	\begin{tikzcd}
+		0 & 1
+		\arrow["{id_0}", shift left, from=1-1, to=1-1, loop, in=150, out=210, distance=5mm]
+		\arrow["a", shift left=2, from=1-1, to=1-2]
+		\arrow["b", shift left=2, from=1-2, to=1-1]
+		\arrow["{id_1}", shift left, from=1-2, to=1-2, loop, in=330, out=30, distance=5mm]
+	\end{tikzcd}
+\end{equation*}
+
+\begin{equation*}
+	\begin{tikzcd}[ampersand replacement=\&]
+		1 \&\& 1
+		\arrow["{\begin{psmallmatrix}1&0\\0&1\end{psmallmatrix}}", from=1-1, to=1-3]
+	\end{tikzcd}
+\end{equation*}
+\subsectionnonumber{范畴积}
+\begin{center}
+	\begin{tikzcd}[ampersand replacement=\&,sep=large]
+		\&\&\& {} \\
+		\&\&\& {\R^2} \\
+		{} \& \R \&\&\&\& \R \& {} \\
+		\&\&\& {\R^2} \\
+		\&\&\& {}
+		\arrow["{\text{span}(e_1,e_2)}"{description, pos=0.2}, draw=none, from=2-4, to=1-4]
+		\arrow["{\begin{psmallmatrix}1&0\\0&0\end{psmallmatrix}}"',{pos=0.4}, from=2-4, to=3-2]
+		\arrow["{\begin{psmallmatrix}0&0\\0&1\end{psmallmatrix}}", {pos=0.4}, from=2-4, to=3-6]
+		\arrow["{\begin{psmallmatrix}1&0\\0&1\end{psmallmatrix}}"{description}, dashed, from=2-4, to=4-4]
+		\arrow["{\text{span}(e_1)}"{description, pos=0.5}, draw=none, from=3-2, to=3-1]
+		\arrow["{\text{span}(e_2)}"{description, pos=0.5}, draw=none, from=3-6, to=3-7]
+		\arrow["{\begin{psmallmatrix}1&0\\0&0\end{psmallmatrix}}", {pos=0.4}, from=4-4, to=3-2]
+		\arrow["{\begin{psmallmatrix}0&0\\0&1\end{psmallmatrix}}"', {pos=0.4}, from=4-4, to=3-6]
+		\arrow["{\text{span}(e_1,e_2)}"{description, pos=0.2}, draw=none, from=4-4, to=5-4]
+	\end{tikzcd}
+\end{center}
+根据第一个\hyperref[cd1]{交换图}
