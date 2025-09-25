@@ -334,7 +334,7 @@ headpunct={:}, postheadspace=0.5em
 \newcommand{\example}[1]{\begin{example} #1 \end{example}}
 
 % Theorem-like (italic body) in blue
-\newtcbtheorem[use counter from=theorem]{theorem_tcolorbox}{Theorem}{
+\newtcbtheorem[use counter from=theorem]{theoremtcolorbox}{Theorem}{
 	coltitle=绀青!90!black,
 	colframe=绀青!90!white,
 	enhanced, breakable,
@@ -343,7 +343,7 @@ headpunct={:}, postheadspace=0.5em
 }{theorem}
 
 % Lemma, Corollary, Observation share the theorem counter and style
-\newtcbtheorem[use counter from=theorem]{lemma_tcolorbox}{Lemma}{
+\newtcbtheorem[use counter from=theorem]{lemmatcolorbox}{Lemma}{
 	coltitle=绀青!90!black,
 	colframe=绀青!90!white,
 	enhanced, breakable,
@@ -351,7 +351,7 @@ headpunct={:}, postheadspace=0.5em
 	fonttitle=\bfseries, fontupper=\itshape
 }{lemma}
 
-\newtcbtheorem[use counter from=theorem]{corollary_tcolorbox}{Corollary}{
+\newtcbtheorem[use counter from=theorem]{corollarytcolorbox}{Corollary}{
 	coltitle=绀青!90!black,
 	colframe=绀青!90!white,
 	enhanced, breakable,
@@ -359,7 +359,7 @@ headpunct={:}, postheadspace=0.5em
 	fonttitle=\bfseries, fontupper=\itshape
 }{corollary}
 
-\newtcbtheorem[use counter from=theorem]{observation_tcolorbox}{Observation}{
+\newtcbtheorem[use counter from=theorem]{observationtcolorbox}{Observation}{
 	coltitle=绀青!90!black,
 	colframe=绀青!90!white,
 	enhanced, breakable,
@@ -377,7 +377,7 @@ headpunct={:}, postheadspace=0.5em
 }{definition}
 
 % Example (upright) in green, sync with your existing "example" counter
-\newtcbtheorem[use counter from=example]{example_tcolorbox}{Example}{
+\newtcbtheorem[use counter from=example]{exampletcolorbox}{Example}{
 	coltitle=松绿!90!black,
 	colframe=松绿!90!white,
 	enhanced, breakable,
@@ -386,7 +386,7 @@ headpunct={:}, postheadspace=0.5em
 }{example}
 
 % Notation and Corrections (upright), sync with existing counters
-\newtcbtheorem[use counter from=notation]{notation_tcolorbox}{Notation}{
+\newtcbtheorem[use counter from=notation]{notationtcolorbox}{Notation}{
 	coltitle=藏蓝!90!black,
 	colframe=藏蓝!90!white,
 	enhanced, breakable,
@@ -394,7 +394,7 @@ headpunct={:}, postheadspace=0.5em
 	fonttitle=\bfseries, fontupper=\normalfont
 }{notation}
 
-\newtcbtheorem[use counter from=corrections]{corrections_tcolorbox}{Corrections}{
+\newtcbtheorem[use counter from=corrections]{correctionstcolorbox}{Corrections}{
 	coltitle=藏蓝!90!black,
 	colframe=藏蓝!90!white,
 	enhanced, breakable,
@@ -411,15 +411,15 @@ headpunct={:}, postheadspace=0.5em
 	fonttitle=\bfseries, fontupper=\itshape
 }{remark}
 
-\newcommand{\theorem_tcb}[2][]{\begin{theorem_tcolorbox}{#1}#2\end{theorem_tcolorbox}}
-\newcommand{\lemma_tcb}[2][]{\begin{lemma_tcolorbox}{#1}#2\end{lemma_tcolorbox}}
-\newcommand{\corollary_tcb}[2][]{\begin{corollary_tcolorbox}{#1}#2\end{corollary_tcolorbox}}
-\newcommand{\observation_tcb}[2][]{\begin{observation_tcolorbox}{#1}#2\end{observation_tcolorbox}}
-\newcommand{\definition_tcb}[2][]{\begin{definition_tcolorbox}{#1}#2\end{definition_tcolorbox}}
-\newcommand{\example_tcb}[2][]{\begin{example_tcolorbox}{#1}#2\end{example_tcolorbox}}
-\newcommand{\notation_tcb}[2][]{\begin{notation_tcolorbox}{#1}#2\end{notation_tcolorbox}}
-\newcommand{\corrections_tcb}[2][]{\begin{corrections_tcolorbox}{#1}#2\end{corrections_tcolorbox}}
-\newcommand{\remark_tcb}[2][]{\begin{remark_tcolorbox}{#1}#2\end{remark_tcolorbox}}
+\newcommand{\theoremtcb}[2][]{\begin{theoremtcolorbox}{#1}#2\end{theoremtcolorbox}}
+\newcommand{\lemmatcb}[2][]{\begin{lemmatcolorbox}{#1}#2\end{lemmatcolorbox}}
+\newcommand{\corollarytcb}[2][]{\begin{corollarytcolorbox}{#1}#2\end{corollarytcolorbox}}
+\newcommand{\observationtcb}[2][]{\begin{observationtcolorbox}{#1}#2\end{observationtcolorbox}}
+\newcommand{\definitiontcb}[2][]{\begin{definitiontcolorbox}{#1}#2\end{definitiontcolorbox}}
+\newcommand{\exampletcb}[2][]{\begin{exampletcolorbox}{#1}#2\end{exampletcolorbox}}
+\newcommand{\notationtcb}[2][]{\begin{notationtcolorbox}{#1}#2\end{notationtcolorbox}}
+\newcommand{\correctionstcb}[2][]{\begin{correctionstcolorbox}{#1}#2\end{correctionstcolorbox}}
+\newcommand{\remarktcb}[2][]{\begin{remarktcolorbox}{#1}#2\end{remarktcolorbox}}
 
 % 证明与目录标题本地化
 \AtBeginDocument{\renewcommand\proofname{{\color{宝蓝}Proof.}}}
