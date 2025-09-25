@@ -193,6 +193,57 @@ options%keyvals#c
 \mtfrule{width%l}{height%l}
 \mtfflag
 
+%color
+# 通用
+invpurple
+# 水
+水蓝
+# 蓝
+靛蓝
+宝蓝
+藏蓝
+靛青
+绀青
+# 红
+桃红
+品红
+丹
+殷红
+红梅
+中红
+朱红
+宫墙红
+# 绿
+绿沈
+青碧
+缥
+艾绿
+嫩绿
+青白
+松绿
+铜绿
+# 黄/橙
+姜黄
+橙色
+# 灰
+苍白
+苍青
+深岩灰
+# 黑
+漆黑
+墨色
+# 白
+莹白
+雪白
+月白
+花白
+灰白
+# 跨旗配色
+mtfpink
+mtfblue
+mtfwhite
+%end
+
 # ---------------------------------------
 # Nice-to-have: hyperlinks may appear when email is present,
 # but \email's argument is plain text here.
