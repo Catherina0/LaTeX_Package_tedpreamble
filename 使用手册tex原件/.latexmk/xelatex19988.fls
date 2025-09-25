@@ -1,0 +1,5 @@
+PWD C:/Users/PYF/Desktop/KU_mat/tedpreamble宏包使用手册
+INPUT c:/texlive/2024/texmf.cnf
+INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
+INPUT c:/texlive/2024/texmf-var/web2c/xetex/xelatex.fmt
+INPUT 使用手册.tex

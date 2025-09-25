@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage[]{tedpreamble}
+
+
+\version{1}
+\email{Teddypyf@gmail.com}
+\title{\texttt{tedpreamble.sty}宏包使用手册}
+\author{Ted}
+\date{\today}
+
+\begin{document}
+	\pagestyle{empty}
+	\makeopening[email=true, ver=zh, time=zh]
+	\begin{center}
+		\parbox{0.6\textwidth}{\texttt{tedpreamble.sty}(以下称为宏包或包)是作者将日常写作会使用的各类功能进行打包得到的一个用来精简前言区的宏包, 使用\texttt{XeLaTex}或\texttt{latexmk}编译}
+	\end{center}
+	\newpage
+	\tcbnonumber
+	\newpage
+	\pagenumbering{arabic}
+	\pagestyle{fancy}
+	\setcounter{page}{1}
+	\section{安装}
+	\subsection{Windows}
+	当前在Windows下的安装有两种方式
+	\begin{enumerate}
+		\item[(1)] 使用部署脚本\texttt{Deploy.PS1}将包部署至TeX Live下的系统目录, 这通常需要将\texttt{Deploy.PS1}设置为管理员权限运行.
+		\item[(2)] 将宏包文件放置在需要编译的文档的同一文件夹下, 需要注意的是这需要在导言区调用宏包时设置使用LaTeX以及XeCJK包默认字体的选项:  \lstinline|\usepackage[defaultfonts=true]{tedpreamble}|, 以避免系统或TeX Live 没有对应字体.
+	\end{enumerate}
+	
+	\subsection{MacOS, Linux以及Overleaf}
+	目前这几个平台暂无对应部署脚本, 可以参考Windows安装方法(2)的安装方式
+	
+	\section{基础使用}
+	在文档前言区使用调用宏包指令: \lstinline|\usepackage{tedpreamble}| 使用\texttt{XeLaTex}编译或使用\texttt{latexmk -xelatex}编译
+	
+	\section{高级使用}
+	\subsection{选项}
+	该宏包在调用时有一系列默认选项, 这规定了包在一般情况下的默认行为, 但是在一些特定情况下, 这些行为会导致错误或使文档没有安装预期呈现. 此时在调用宏包时对相关选项进行修改给予用户更多的选择.
+	
+	选项通过在导言区调用宏包时设置: \lstinline|\usepackage[<选项>=<true,false,字段>]{tedpreamble}|,选项之间通过西文逗号分隔.
+	
+	\subsubsection{草稿模式}
+	\begin{itemize}[itemsep=1ex]
+		\item \texttt{draft=true/false}\\
+		以草稿模式编译, 当 \texttt{draft=true} 时不载入图片以加速编译, 默认 \texttt{false}.
+	\end{itemize}
+	
+	\subsubsection{版式, 页面, 行距}
+	\begin{itemize}[itemsep=1ex]
+		\item \texttt{paper=a4paper}\\
+		文档纸型, 默认 \texttt{a4paper}.
+		
+		\item \texttt{top=<len>}, \texttt{bottom=<len>}, \texttt{left=<len>}, \texttt{right=<len>}\\
+		页边距, 默认 \texttt{top=2cm}, \texttt{bottom=2cm}, \texttt{left=1cm}, \texttt{right=1cm}.
+		
+		\item \texttt{headheight=<len>}\\
+		页眉高度, 默认 \texttt{15pt}.
+		
+		\item \texttt{linespread=<number>}\\
+		全局行距, 默认 \texttt{1.5}.
+	\end{itemize}
+	
+	\subsubsection{语言}
+	\begin{itemize}[itemsep=1ex]
+		\item \texttt{languages=\{danish,english\}}\\
+		传递给 \texttt{babel} 的选项, 默认 \texttt{\{danish,english\}}.
+	\end{itemize}
+	
+	\subsubsection{字体开关与名称}
+	\begin{itemize}[itemsep=1ex]
+		\item \texttt{defaultfonts=true/false}\\
+		是否使用默认字体族, 默认 \texttt{false}. 启用时使用LaTeX以及XeCJK包默认字体
+		
+		\item \texttt{notomathscale=<number>}\\
+		数学字体缩放比例, 默认 \texttt{1.05}.
+		
+		\item \texttt{mainfont=<name>}\\
+		正文字体, 默认 \texttt{Noto Serif Light}.
+		
+		\item \texttt{mainfontbold=<name>}\\
+		正文字体加粗, 默认 \texttt{Noto Serif}.
+		
+		\item \texttt{mainfontitalic=<name>}\\
+		正文字体斜体, 默认 \texttt{Noto Serif Light Italic}.
+		
+		\item \texttt{sansfont=<name>}\\
+		无衬线字体, 默认 \texttt{Noto Sans Light}.
+		
+		\item \texttt{sansfontbold=<name>}\\
+		无衬线字体加粗, 默认 \texttt{Noto Sans}.
+		
+		\item \texttt{sansfontitalic=<name>}\\
+		无衬线字体斜体, 默认 \texttt{Noto Sans Light Italic}.
+		
+		\item \texttt{monofont=<name>}\\
+		等宽字体, 默认 \texttt{MapleMono-NF-CN-Light}.
+		
+		\item \texttt{cjkmain=<name>}\\
+		CJK 正文字体, 默认 \texttt{LXGWNeoZhiSongPlus.ttf}.
+		
+		\item \texttt{cjksans=<name>}\\
+		CJK 无衬线字体, 默认 \texttt{LXGWNeoXiHeiPlus.ttf}.
+		
+		\item \texttt{cjkmono=<name>}\\
+		CJK 等宽字体, 默认 \texttt{MapleMono-NF-CN-Regular}.
+	\end{itemize}
+	
+	\subsubsection{超链接样式}
+	\begin{itemize}[itemsep=1ex]
+		\item \texttt{hidelinks=true/false}\\
+		是否隐藏链接样式, 当 \texttt{hidelinks=true} 时使用隐藏样式, 否则使用彩色链接, 默认 \texttt{false}.
+		
+		\item \texttt{linkcolor=<color>}\\
+		普通链接颜色, 默认 \texttt{朱红}.
+		
+		\item \texttt{urlcolor=<color>}\\
+		URL 链接颜色, 默认 \texttt{深岩灰}.
+	\end{itemize}
+	
+	
+	\subsection{指令}
+	(todo)
+	\subsection{颜色}
+	(todo)
+\end{document}
