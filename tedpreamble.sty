@@ -333,6 +333,94 @@ headpunct={:}, postheadspace=0.5em
 \newcommand{\proposition}[1]{\begin{proposition} #1 \end{proposition}}
 \newcommand{\example}[1]{\begin{example} #1 \end{example}}
 
+% Theorem-like (italic body) in blue
+\newtcbtheorem[use counter from=theorem]{theorem_tcolorbox}{Theorem}{
+	coltitle=绀青!90!black,
+	colframe=绀青!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\itshape
+}{theorem}
+
+% Lemma, Corollary, Observation share the theorem counter and style
+\newtcbtheorem[use counter from=theorem]{lemma_tcolorbox}{Lemma}{
+	coltitle=绀青!90!black,
+	colframe=绀青!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\itshape
+}{lemma}
+
+\newtcbtheorem[use counter from=theorem]{corollary_tcolorbox}{Corollary}{
+	coltitle=绀青!90!black,
+	colframe=绀青!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\itshape
+}{corollary}
+
+\newtcbtheorem[use counter from=theorem]{observation_tcolorbox}{Observation}{
+	coltitle=绀青!90!black,
+	colframe=绀青!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\itshape
+}{observation}
+
+% Definition (upright) in red, shares theorem counter
+\newtcbtheorem[use counter from=theorem]{definition_tcolorbox}{Definition}{
+	coltitle=朱红!90!black,
+	colframe=朱红!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\normalfont
+}{definition}
+
+% Example (upright) in green, sync with your existing "example" counter
+\newtcbtheorem[use counter from=example]{example_tcolorbox}{Example}{
+	coltitle=松绿!90!black,
+	colframe=松绿!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\normalfont
+}{example}
+
+% Notation and Corrections (upright), sync with existing counters
+\newtcbtheorem[use counter from=notation]{notation_tcolorbox}{Notation}{
+	coltitle=藏蓝!90!black,
+	colframe=藏蓝!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\normalfont
+}{notation}
+
+\newtcbtheorem[use counter from=corrections]{corrections_tcolorbox}{Corrections}{
+	coltitle=藏蓝!90!black,
+	colframe=藏蓝!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\normalfont
+}{corrections}
+
+% Remark (italic), unnumbered, in green
+\newtcbtheorem{remark_tcolorbox}{Remark}{
+	coltitle=松绿!90!black,
+	colframe=松绿!90!white,
+	enhanced, breakable,
+	skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+	fonttitle=\bfseries, fontupper=\itshape
+}{remark}
+
+\newcommand{\theorem_tcb}[2][]{\begin{theorem_tcolorbox}{#1}#2\end{theorem_tcolorbox}}
+\newcommand{\lemma_tcb}[2][]{\begin{lemma_tcolorbox}{#1}#2\end{lemma_tcolorbox}}
+\newcommand{\corollary_tcb}[2][]{\begin{corollary_tcolorbox}{#1}#2\end{corollary_tcolorbox}}
+\newcommand{\observation_tcb}[2][]{\begin{observation_tcolorbox}{#1}#2\end{observation_tcolorbox}}
+\newcommand{\definition_tcb}[2][]{\begin{definition_tcolorbox}{#1}#2\end{definition_tcolorbox}}
+\newcommand{\example_tcb}[2][]{\begin{example_tcolorbox}{#1}#2\end{example_tcolorbox}}
+\newcommand{\notation_tcb}[2][]{\begin{notation_tcolorbox}{#1}#2\end{notation_tcolorbox}}
+\newcommand{\corrections_tcb}[2][]{\begin{corrections_tcolorbox}{#1}#2\end{corrections_tcolorbox}}
+\newcommand{\remark_tcb}[2][]{\begin{remark_tcolorbox}{#1}#2\end{remark_tcolorbox}}
+
 % 证明与目录标题本地化
 \AtBeginDocument{\renewcommand\proofname{{\color{宝蓝}Proof.}}}
 \newenvironment{ch_proof}{\begin{proof}[\itshape\textcolor{宝蓝}{证明.}]}{\end{proof}}
