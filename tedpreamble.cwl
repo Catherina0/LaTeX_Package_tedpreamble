@@ -15,7 +15,7 @@
 #include:newfloat
 #include:float
 
-# Then your package’s own include
+# Then your package's own include
 #include:tedpreamble
 
 # Then your \usepackage line
@@ -23,18 +23,18 @@
 
 #keyvals:\usepackage/tedpreamble
 options%keyvals#c
-paper, top##L, bottom##L, left##L, right##L, headheight##L, linespread,
-languages%text,
-draft=#true,false,
-defaultfonts=#true,false,
-notomathscale,
-mainfont%text, mainfontbold%text, mainfontitalic%text,
-sansfont%text, sansfontbold%text, sansfontitalic%text,
-monofont%text,
-cjkmain%file, cjksans%file, cjkmono%text,
-hidelinks=#true,false,
-linkcolor#%color, urlcolor#%color,
-docversion%text
+ paper, top##L, bottom##L, left##L, right##L, headheight##L, linespread,
+ languages%text,
+ draft=#true,false,
+ defaultfonts=#true,false,
+ notomathscale,
+ mainfont%text, mainfontbold%text, mainfontitalic%text,
+ sansfont%text, sansfontbold%text, sansfontitalic%text,
+ monofont%text,
+ cjkmain%file, cjksans%file, cjkmono%text,
+ hidelinks=#true,false,
+ linkcolor#%color, urlcolor#%color,
+ docversion%text
 #endkeyvals
 
 # ---------------------------------------
@@ -48,9 +48,9 @@ docversion%text
 # Keyvals for \makeopening[...]
 # ---------------------------------------
 #keyvals:\makeopening
-email=#true,false,
-ver=#en,zh,both,none,
-time=#en,zh,both,none
+ email=#true,false,
+ ver=#en,zh,both,none,
+ time=#en,zh,both,none
 #endkeyvals
 
 # Unnumbered section helpers
@@ -59,11 +59,11 @@ time=#en,zh,both,none
 \subsubsectionnonumber{title%title}
 
 # Theorem shorthands (wrapper commands)
-\def{text%text}
-\thm{text%text}
-\lem{text%text}
-\coro{text%text}
-\prop{text%text}
+\definition{text%text}
+\theorem{text%text}
+\lemma{text%text}
+\corollary{text%text}
+\proposition{text%text}
 
 # ---------------------------------------
 # Environments provided/defined by the package
@@ -109,6 +109,23 @@ time=#en,zh,both,none
 \end{corrections}
 \begin{remark}
 \end{remark}
+\begin{proposition}[title%title]
+\end{proposition}
+
+\begin{theorem}
+\end{theorem}
+\begin{lemma}
+\end{lemma}
+\begin{corollary}
+\end{corollary}
+\begin{observation}
+\end{observation}
+\begin{definition}
+\end{definition}
+\begin{example}
+\end{example}
+\begin{proposition}
+\end{proposition}
 
 # Theorem-like environments (中文)
 \begin{ch_theorem}[title%title]
