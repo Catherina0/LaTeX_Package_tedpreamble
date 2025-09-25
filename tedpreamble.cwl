@@ -244,7 +244,3 @@ mtfblue
 mtfwhite
 %end
 
-# ---------------------------------------
-# Nice-to-have: hyperlinks may appear when email is present,
-# but \email's argument is plain text here.
-# ---------------------------------------
