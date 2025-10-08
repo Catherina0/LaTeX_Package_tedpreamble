@@ -31,16 +31,6 @@
 \DeclareBoolOption[false]{defaultfonts}
 \DeclareStringOption[1.05]{notomathscale}
 
-\DeclareStringOption[Noto Serif]{mainfont}
-\DeclareStringOption[Noto Serif Bold]{mainfontbold}
-\DeclareStringOption[Noto Serif Italic]{mainfontitalic}
-
-\DeclareStringOption[NotoSans]{sansfont}
-\DeclareStringOption[NotoSans Bold]{sansfontbold}
-\DeclareStringOption[NotoSans Italic]{sansfontitalic}
-
-\DeclareStringOption[Maple Mono NF CN Light]{monofont}
-
 \DeclareStringOption[霞鹜新致宋＋]{cjkmain}
 \DeclareStringOption[霞鹜新晰黑＋]{cjksans}
 \DeclareStringOption[Maple Mono NF CN Light]{cjkmono}
@@ -83,11 +73,12 @@
 % 正文字体与数学字体
 \ifthenelse{\boolean{tp@defaultfonts}}{}{
 	% 自定义字体分支
+	\RequirePackage{noto}
 	\RequirePackage[scale=\tp@notomathscale,subscriptcorrection]{notomath}
-	\defaultfontfeatures{Scale=1}
-	\setmainfont[Scale=1,BoldFont=\tp@mainfontbold,ItalicFont=\tp@mainfontitalic]{\tp@mainfont}
-	\setsansfont[Scale=1,BoldFont=\tp@sansfontbold,ItalicFont=\tp@sansfontitalic]{\tp@sansfont}
-	\setmonofont[Scale=1]{\tp@monofont}
+	% \defaultfontfeatures{Scale=1}
+	% \setmainfont[Scale=1,BoldFont=\tp@mainfontbold,ItalicFont=\tp@mainfontitalic]{\tp@mainfont}
+	% \setsansfont[Scale=1,BoldFont=\tp@sansfontbold,ItalicFont=\tp@sansfontitalic]{\tp@sansfont}
+	% \setmonofont[Scale=1]{\tp@monofont}
 	% CJK 字体由你的包选项决定; 若用户未改默认, 使用你之前在选项里给出的默认值
 	\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=0.25,Scale=1]{\tp@cjkmain}
 	\setCJKsansfont[Scale=1]{\tp@cjksans}
