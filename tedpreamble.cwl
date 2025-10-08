@@ -27,23 +27,23 @@
 #keyvals:\usepackage/tedpreamble
 options%keyvals#c
  paper, top##L, bottom##L, left##L, right##L, headheight##L, linespread,
- languages%text,
+ languages=#text,
  draft=#true,false,
  defaultfonts=#true,false,
- notomathscale,
- mainfont%text,
- mainfontbold%text,
- mainfontitalic%text,
- sansfont%text,
- sansfontbold%text,
- sansfontitalic%text,
- monofont%text,
- cjkmain%file,
- cjksans%file,
- cjkmono%text,
+ notomathscale=#num,
+ mainfont=#text,
+ mainfontbold=#text,
+ mainfontitalic=#text,
+ sansfont=#text,
+ sansfontbold=#text,
+ sansfontitalic=#text,
+ monofont=#text,
+ cjkmain=#text,
+ cjksans=#text,
+ cjkmono=#text,
  hidelinks=#true,false,
- linkcolor#%color, urlcolor#%color,
- docversion%text
+ linkcolor=#%color, urlcolor=#%color,
+ docversion=%text
 #endkeyvals
 
 # ---------------------------------------
