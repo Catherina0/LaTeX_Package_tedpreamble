@@ -1,4 +1,7 @@
 #include:amsmath
+#include:amsthm
+#include:amssymb
+#include:amsfonts
 #include:mathtools
 #include:physics
 #include:thmtools
@@ -28,10 +31,16 @@ options%keyvals#c
  draft=#true,false,
  defaultfonts=#true,false,
  notomathscale,
- mainfont%text, mainfontbold%text, mainfontitalic%text,
- sansfont%text, sansfontbold%text, sansfontitalic%text,
+ mainfont%text,
+ mainfontbold%text,
+ mainfontitalic%text,
+ sansfont%text,
+ sansfontbold%text,
+ sansfontitalic%text,
  monofont%text,
- cjkmain%file, cjksans%file, cjkmono%text,
+ cjkmain%file,
+ cjksans%file,
+ cjkmono%text,
  hidelinks=#true,false,
  linkcolor#%color, urlcolor#%color,
  docversion%text
