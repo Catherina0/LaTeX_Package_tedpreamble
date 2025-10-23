@@ -17,6 +17,8 @@
 #include:graphicx
 #include:newfloat
 #include:float
+#include:verbatim
+#include:dirtytalk
 
 # Then your package's own include
 #include:tedpreamble
