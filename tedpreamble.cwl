@@ -48,16 +48,13 @@ options%keyvals#c
  docversion=%text
 #endkeyvals
 
-# ---------------------------------------
 # Public user commands
-# ---------------------------------------
 \version{version%text}
 \email{email%text}
 \makeopening[options]   # has only an optional keyval argument
 \tcbnonumber
 
 # Keyvals for \makeopening[...]
-# ---------------------------------------
 #keyvals:\makeopening
  email=#true,false,
  ver=#en,zh,both,none,
@@ -182,9 +179,7 @@ options%keyvals#c
 \begin{da_remark}
 \end{da_remark}
 
-# ---------------------------------------
 # Math helpers (mark as math-only where appropriate)
-# ---------------------------------------
 \N#m
 \Z#m
 \Q#m
@@ -253,5 +248,12 @@ invpurple
 mtfpink
 mtfblue
 mtfwhite
+# DK bane color
+m1
+m2
+m3
+m4
+letbane
+
 %end
 
