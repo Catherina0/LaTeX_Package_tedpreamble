@@ -66,13 +66,6 @@ options%keyvals#c
 \subsectionnonumber{title%title}
 \subsubsectionnonumber{title%title}
 
-# Theorem shorthands (wrapper commands)
-\definition{text%text}
-\theorem{text%text}
-\lemma{text%text}
-\corollary{text%text}
-\proposition{text%text}
-
 # ---------------------------------------
 # Environments provided/defined by the package
 # (TeXstudio picks up begin/end pairs from CWL.
@@ -178,6 +171,10 @@ options%keyvals#c
 \end{da_corrections}
 \begin{da_remark}
 \end{da_remark}
+\begin{box_def}
+\end{box_def}
+\begin{box_thm}
+\end{box_thm}
 
 # Math helpers (mark as math-only where appropriate)
 \N#m
